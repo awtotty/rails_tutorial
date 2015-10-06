@@ -10,6 +10,8 @@ class UsersController < ApplicationController
   def create 
   	@user = User.new(user_params)	
   	if @user.save
+      # If created successfully, log them in, flash success, and redirect to their page
+      log_in @user
   		flash[:success] = "Welcome to the Greatest App Ever!"
   		redirect_to @user
   	else
